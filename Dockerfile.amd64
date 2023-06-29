@@ -1,0 +1,16 @@
+FROM python:3.7-slim 
+
+# We copy just the requirements.txt first to leverage Docker cache
+COPY ./requirements.txt /requirements.txt
+
+WORKDIR /
+
+RUN pip install -r requirements.txt
+
+COPY . /
+
+EXPOSE 5000
+
+ENTRYPOINT [ "python" ]
+
+CMD [ "app.py" ]
